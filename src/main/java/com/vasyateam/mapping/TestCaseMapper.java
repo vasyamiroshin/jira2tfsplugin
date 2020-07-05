@@ -16,6 +16,11 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
+/**
+ * Custom mapper from jira to tfs testcases.
+ *
+ * @author Vasiliy_Miroshin
+ */
 @Mapper
 public interface TestCaseMapper {
 

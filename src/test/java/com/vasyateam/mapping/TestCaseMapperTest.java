@@ -7,6 +7,11 @@ import com.vasyateam.model.tfs.TfsTestCase;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.jupiter.api.Test;
 
+/**
+ * Test for custom mapper from jira to tfs testcases.
+ *
+ * @author Vasiliy_Miroshin
+ */
 class TestCaseMapperTest {
 
     @Test

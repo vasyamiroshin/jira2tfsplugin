@@ -9,6 +9,8 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 
 /**
  * Main application, endpoint to start.
+ *
+ * @author Vasiliy_Miroshin
  */
 @SpringBootApplication
 public class JiraToTfsConverterApplication implements CommandLineRunner {

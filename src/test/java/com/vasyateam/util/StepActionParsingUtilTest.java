@@ -7,6 +7,11 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Map;
 
+/**
+ * Test for utility for parsing step actions from whole text.
+ *
+ * @author Vasiliy_Miroshin
+ */
 class StepActionParsingUtilTest {
 
     @Test

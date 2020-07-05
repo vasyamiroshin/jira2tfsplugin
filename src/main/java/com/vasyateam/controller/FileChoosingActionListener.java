@@ -11,6 +11,7 @@ import com.vasyateam.view.FileChooser;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -52,8 +53,8 @@ public class FileChoosingActionListener implements ActionListener {
 
         JTextArea log = fileChooser.getLog();
         if (e.getSource() == fileChooser.getOpenButton()) {
+            log.setText(StringUtils.EMPTY);
             int returnVal = fileChooser.getFc().showOpenDialog(fileChooser);
-
             if (returnVal == JFileChooser.APPROVE_OPTION) {
                 File file = fileChooser.getFc().getSelectedFile();
                 log.append("Opening: " + file.getName() + "." + NEW_LINE);
