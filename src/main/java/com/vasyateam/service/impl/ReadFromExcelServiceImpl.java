@@ -38,9 +38,8 @@ public class ReadFromExcelServiceImpl implements ReadFromExcelService {
                 jiraTestCase.setSummary(Optional.ofNullable(row.getCell(0)).map(Cell::getStringCellValue).orElse(EMPTY));
                 jiraTestCase.setTestSteps(Optional.ofNullable(row.getCell(1)).map(Cell::getStringCellValue).orElse(EMPTY));
                 jiraTestCase.setExpectedResult(Optional.ofNullable(row.getCell(2)).map(Cell::getStringCellValue).orElse(EMPTY));
-                jiraTestCase.setPriority(Optional.ofNullable(row.getCell(3)).map(Cell::getStringCellValue).orElse(EMPTY));
-
-
+                jiraTestCase.setPriority(Optional.ofNullable(row.getCell(3)).map(Cell::getNumericCellValue).map(Double::intValue)
+                        .orElse(null));
                 jiraTestCases.add(jiraTestCase);
             }
         });

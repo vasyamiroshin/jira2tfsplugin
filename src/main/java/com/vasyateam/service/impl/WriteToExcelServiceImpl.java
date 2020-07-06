@@ -71,7 +71,10 @@ public class WriteToExcelServiceImpl implements WriteToExcelService {
             Cell tags = headerRow.createCell(3);
             tags.setCellValue(EMPTY);
             Cell priority = headerRow.createCell(4);
-            priority.setCellValue(key.equals(minKey) ? tfsTestCase.getPriority() : EMPTY);
+            Integer priorityValue = tfsTestCase.getPriority();
+            if (key.equals(minKey) && priorityValue != null) {
+                priority.setCellValue(priorityValue);
+            }
             Cell assignedTo = headerRow.createCell(5);
             assignedTo.setCellValue(EMPTY);
         }

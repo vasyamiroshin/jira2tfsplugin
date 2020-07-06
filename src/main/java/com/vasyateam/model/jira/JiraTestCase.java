@@ -20,5 +20,5 @@ public class JiraTestCase {
 
     private String expectedResult;
 
-    private String priority;
+    private Integer priority;
 }

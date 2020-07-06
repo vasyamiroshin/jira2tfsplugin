@@ -23,7 +23,7 @@ public class TfsTestCase {
 
     private List<String> labels;
 
-    private String priority;
+    private Integer priority;
 
     private String assignedTo;
 
