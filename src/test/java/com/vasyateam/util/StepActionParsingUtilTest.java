@@ -1,5 +1,6 @@
 package com.vasyateam.util;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static com.vasyateam.util.StepActionParsingUtil.parseJiraDescription;
 
@@ -24,7 +25,7 @@ class StepActionParsingUtilTest {
                 "ормат выгруженного документа.";
         Map<Integer, String> steps = parseJiraDescription(jiraDescription);
         assertTrue(steps.size() > 0);
-        assertTrue(steps.size() == 6);
+        assertEquals(6, steps.size());
     }
 
     @Test
@@ -41,7 +42,7 @@ class StepActionParsingUtilTest {
                 "ос в Солнышко уходит через указанные промежутки времени.";
         Map<Integer, String> steps = parseJiraDescription(jiraDescription);
         assertTrue(steps.size() > 0);
-        assertTrue(steps.size() == 8);
+        assertEquals(8, steps.size());
     }
 
     @Test
@@ -52,7 +53,41 @@ class StepActionParsingUtilTest {
                 ".1.";
         Map<Integer, String> steps = parseJiraDescription(jiraDescription);
         assertTrue(steps.size() > 0);
-        assertTrue(steps.size() == 5);
+        assertEquals(5, steps.size());
     }
+
+    @Test
+    void parseJiraExpectedActionsWithSubPoints() {
+        final String jiraDescription = "1. Войти как Клиент > Импорт\n2. Импортировать XML файл \"Жучка\", в кото" +
+                "ром:\n2.1 Вид собаки (песеля) = 1, 2, 7, 8, 9:\n* ABBA = 1, 7, 8\n* AC/DC " +
+                "= 2, 9, 0\n\n2.2 Вид собаки (песеля) = 5, 6:\n* ABBA = 1, 9\n* AC/DC = 2, 8";
+        Map<Integer, String> steps = parseJiraDescription(jiraDescription);
+        assertTrue(steps.size() > 0);
+        assertEquals(4, steps.size());
+    }
+
+    @Test
+    void parseJiraExpectedActionsAndResultsWithSubPoints() {
+        final String jiraActionDescription = "1. ABBA 2.DEMO 3.  KASTA  3.1 SCORPIONS 4. LESOPOVAL";
+        final String jiraResultDescription = "1. ABBA 4. LESOPOVAL";
+        Map<Integer, String> steps = parseJiraDescription(jiraActionDescription);
+        Map<Integer, String> results = parseJiraDescription(jiraResultDescription);
+        assertTrue(steps.size() > 0);
+        assertEquals(5, steps.size());
+        assertTrue(results.size() > 0);
+        assertEquals(2, results.size());
+        int actionStep = steps.entrySet().stream()
+                .filter(integerStringEntry -> integerStringEntry.getValue().equals("LESOPOVAL"))
+                .findFirst()
+                .map(Map.Entry::getKey)
+                .orElse(-1);
+        int resultStep = results.entrySet().stream()
+                .filter(integerStringEntry -> integerStringEntry.getValue().equals("LESOPOVAL"))
+                .findFirst()
+                .map(Map.Entry::getKey)
+                .orElse(-1);
+        assertEquals(actionStep, resultStep);
+    }
+
 
 }

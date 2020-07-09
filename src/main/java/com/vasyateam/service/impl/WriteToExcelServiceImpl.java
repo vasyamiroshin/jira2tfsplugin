@@ -16,6 +16,8 @@ import org.springframework.stereotype.Service;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * Service for writing and saving excel files.
@@ -59,7 +61,8 @@ public class WriteToExcelServiceImpl implements WriteToExcelService {
 
     private void createRowFromTfsTestCase(TfsTestCase tfsTestCase, Sheet sheet) {
         Integer minKey = tfsTestCase.getSteps().keySet().stream().min(Integer::compareTo).orElse(0);
-        for (Integer key : tfsTestCase.getSteps().keySet()) {
+        List<Integer> sortedStepKeys = tfsTestCase.getSteps().keySet().stream().sorted().collect(Collectors.toList());
+        for (Integer key :  sortedStepKeys){
             TfsTestStep tfsTestStep = tfsTestCase.getSteps().get(key);
             Row headerRow = sheet.createRow(sheet.getLastRowNum() + 1);
             Cell summary = headerRow.createCell(0);
