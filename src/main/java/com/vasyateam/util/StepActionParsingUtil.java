@@ -59,7 +59,8 @@ public class StepActionParsingUtil {
             }
         }
 
-        stepDescriptionFinishingPosition = jiraDescriptionField.length() - 1;
+        int fieldLength = jiraDescriptionField.length();
+        stepDescriptionFinishingPosition = (fieldLength > 0) ? fieldLength  - 1 : 0;
         steps.put(currentStepIndex, jiraDescriptionField
                 .substring(stepDescriptionStartingPosition, stepDescriptionFinishingPosition));
         return steps;
