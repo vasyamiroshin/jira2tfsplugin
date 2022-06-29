@@ -25,7 +25,7 @@
 
         <!--  Dependency libraries versions -->
         <apache.commons>3.10</apache.commons>
-        <apache.poi>3.17</apache.poi>
+        <apache.poi>4.1.1</apache.poi>
         <junit.version>5.1.0</junit.version>
         <lombok.version>1.18.12</lombok.version>
         <mapstruct.version>1.3.0.Final</mapstruct.version>
