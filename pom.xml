@@ -24,7 +24,7 @@
         <project.reporting.outputEncoding>${project.encoding}</project.reporting.outputEncoding>
 
         <!--  Dependency libraries versions -->
-        <apache.commons>3.10</apache.commons>
+        <apache.commons>3.18.0</apache.commons>
         <apache.poi>3.17</apache.poi>
         <junit.version>5.1.0</junit.version>
         <lombok.version>1.18.12</lombok.version>
